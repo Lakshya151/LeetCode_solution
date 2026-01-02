@@ -1,0 +1,47 @@
+
+class Solution {
+public:
+    TreeNode* deleteNode(TreeNode* root, int key) {
+        if(!root){
+            return NULL;
+        }else if(root->val>key){// when root's value > key , then move to left node
+            root->left= deleteNode(root->left,key);
+        }else if(root->val<key){//when root's value < key , then move to right node
+            root->right= deleteNode(root->right,key);
+        }else{
+            if(!root->left &&!root->right){ // when key is leaf node
+            delete root;
+            return NULL;
+            }else if(!root->left){//root's left not there , only right branch
+               TreeNode *temp= root->right;
+               delete root;
+               return temp;
+            }else if(!root->right){//root's right branch not there 
+                TreeNode *temp= root->left;
+                delete root;
+                return temp;
+            }else{
+                TreeNode *child= root->left;
+                TreeNode * parent=root;
+                while(child->right){
+                    parent=child;
+                    child=child->right;
+                }
+                if(parent==root){// when parent point the root
+                    child->right=parent->right;
+                    delete parent;
+                    return child;
+                }else{
+                    parent->right=child->left;
+                    child->left=root->left;
+                    child->right=root->right;
+                    delete root;
+                    return child;
+                }
+            }
+
+        }
+        return root;
+        
+    }
+};
