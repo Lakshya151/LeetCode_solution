@@ -1,0 +1,22 @@
+
+class Solution {
+public:
+void Inorder(TreeNode *root, vector<int>&arr){ // pre order will arrange the value in ascending order
+    if(root==NULL){
+        return ;
+    }
+    Inorder(root->left,arr);
+    arr.push_back(root->val);
+    Inorder(root->right,arr);
+}
+    bool isValidBST(TreeNode* root) {
+        vector<int>arr;
+        Inorder(root,arr);
+        for(int i=1;i<arr.size();i++){
+            if(arr[i]<=arr[i-1]){
+                return 0;
+            }
+        }
+        return 1;
+    }
+};
