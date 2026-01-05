@@ -1,0 +1,23 @@
+class Solution {
+public:
+    TreeNode* getTargetCopy(TreeNode* original, TreeNode* cloned, TreeNode* target) {   
+      queue<TreeNode*>q2;
+      q2.push(cloned);
+      while( !q2.empty()){
+        TreeNode* temp2=q2.front();
+        q2.pop();
+        if(temp2->val==target->val){
+            return temp2;
+        }else{
+            if(temp2->left){
+               
+                q2.push(temp2->left);
+            }
+             if( temp2->right){
+                q2.push(temp2->right);
+            }
+        }
+      }
+      return nullptr;
+    }
+};
