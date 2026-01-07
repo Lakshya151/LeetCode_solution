@@ -1,0 +1,38 @@
+class Solution {
+public:
+void r(TreeNode *root, vector<int>&ans){
+    queue<TreeNode*>q;
+    q.push(root);
+    int sum;
+    while(!q.empty()){
+        sum=0;
+        int n=q.size();
+        
+        for(int i=0;i<n;i++){//this will travel on the elements that are on same level
+            TreeNode *temp= q.front();
+            q.pop();
+            sum+=temp->val;
+            if(temp->left){
+            q.push(temp->left);
+        }
+        if(temp->right){
+            q.push(temp->right);
+        }
+        }
+        ans.push_back(sum);
+    }
+}
+    int maxLevelSum(TreeNode* root) {
+        vector<int>ans;
+        int fi;
+        r(root,ans);
+        int mx=*max_element(ans.begin(),ans.end());
+        for(int i=0;i<ans.size();i++){
+            if(ans[i]==mx){
+                fi=i;
+                break;
+            }
+        }
+        return fi+1;
+    }
+};
