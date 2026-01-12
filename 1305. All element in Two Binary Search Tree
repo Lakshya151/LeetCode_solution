@@ -1,0 +1,20 @@
+
+class Solution {
+public:
+    void In(TreeNode* root,vector<int>&arr){
+        if(!root){
+            return;
+        }
+        In(root->left,arr);
+        arr.push_back(root->val);
+        In(root->right,arr);
+    }
+    vector<int> getAllElements(TreeNode* root1, TreeNode* root2) {
+        vector<int>arr;
+        In(root1,arr);
+        In(root2,arr);
+        sort(arr.begin(),arr.end());
+        return arr;
+        
+    }
+};
