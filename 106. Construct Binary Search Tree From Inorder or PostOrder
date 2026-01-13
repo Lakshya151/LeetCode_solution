@@ -1,0 +1,28 @@
+
+class Solution {
+public:
+    int pos(vector<int>&inorder , int k, int start, int end){ // this will find the positon curr element in the inorder vector
+        for(int i=start;i<=end;i++){
+            if(inorder[i]==k){
+               return i;
+            }
+        }
+        return -1;
+    }
+    TreeNode * build(vector<int>&inorder,vector<int>&postorder,int start, int end, int &index){
+        if(start>end){
+            return NULL;
+        }
+        TreeNode *root= new TreeNode(postorder[index--]);
+        int position=pos(inorder,root->val,start,end);
+        root->right=build(inorder,postorder,position+1,end,index); //divide the vector in right portion
+        root->left=build(inorder,postorder,start,position-1,index);////divide the vector in left portion
+        return root;
+    }
+    TreeNode* buildTree(vector<int>& inorder, vector<int>& postorder) {
+        int n=inorder.size();
+        int index=n-1;
+        TreeNode* root=build(inorder,postorder,0,n-1,index);
+        return root;
+    }
+};
