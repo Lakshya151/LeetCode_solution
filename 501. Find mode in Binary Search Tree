@@ -1,0 +1,34 @@
+
+class Solution {
+public:
+    
+    int count=0 ;
+    int maxcount=0;
+    TreeNode *prev=nullptr;
+    void inorder(TreeNode *root,vector<int>&ans){
+        if(root==NULL){
+            return;
+        }
+        inorder(root->left,ans);
+        if(!prev || root->val!=prev->val){
+            count=1;
+        }else{
+            count++;
+        }
+        if(count>maxcount){
+            maxcount=count;
+            ans.clear();
+            ans.push_back(root->val);
+        }else if(count==maxcount){
+            ans.push_back(root->val);
+        }
+        prev=root;
+        inorder(root->right,ans);
+
+    }
+    vector<int> findMode(TreeNode* root) {
+        vector<int>ans;
+        inorder(root,ans);
+        return ans;
+    }
+};
