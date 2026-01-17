@@ -1,0 +1,52 @@
+
+class Solution { // here I find the position of peak element
+public:
+    int peak(MountainArray &arr){
+        int left=0 ; int right=arr.length()-1;
+        while(left<right){
+            int mid= left+ (right-left)/2;
+            if(arr.get(mid)<arr.get(mid+1)){
+                left=mid+1;
+            }else{
+                right=mid;
+            }
+        }
+        return left;
+    }
+
+    int index(int target, MountainArray &arr, int  left, int right,bool asc){
+        if(asc){// this will come in work , from index 0 to peak element index
+            while(left<=right){
+                int mid=left+(right-left)/2;
+                if(arr.get(mid)==target){
+                    return mid;
+                }else if(arr.get(mid)<target){
+                    left=mid+1;
+                }else{
+                    right=mid-1;
+                }
+            }
+        }else{                               // This will work , to search from peak element to end
+            while(left<=right){
+                int mid=left+(right-left)/2;
+                if(arr.get(mid)==target){
+                    return mid;
+                }else if(arr.get(mid)<target){
+                    right=mid-1;
+                }else{
+                    left=mid+1;
+                }
+            }
+        }
+        return -1;
+    }
+    int findInMountainArray(int target, MountainArray &mountainArr) {
+        int Peak=peak(mountainArr);
+        int n=mountainArr.length();
+        int Index=index(target,mountainArr,0,Peak,true); //here true , means , it search from start to peak element
+        if(Index!=-1){
+            return Index;
+        }
+        return index(target,mountainArr,Peak+1,n-1,false);  // false will indicate that , I have to search from peak element to last
+    }
+};
