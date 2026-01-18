@@ -1,0 +1,13 @@
+class Solution {
+public:
+    bool checkIfExist(vector<int>& arr) {
+        unordered_set<int>s;//make an unordered set ,to reduce time complexity
+        for(int x:arr){ //here I itrate on each element
+            if(s.count(x*2) ||(x%2==0 && s.count(x/2))){ // first I check if the x double is present , then I check if the x's half is present ,and it is even number
+                return true;
+            }
+            s.insert(x);
+        }
+        return false;
+    }
+};
