@@ -1,0 +1,15 @@
+class Solution {
+public:
+    int singleNumber(vector<int>& nums) {
+        multiset<int>s; //here created a mutlti set so that it can also store duplicate value
+        for(int i=0;i<nums.size();i++){ 
+            s.insert(nums[i]); //inserting values into set
+        }
+        for(int val:s){ // accessing values
+            if(s.count(val)==1){ // if the count is one then return that value.
+                return val;
+            }
+        }
+        return -1;
+    }
+};
