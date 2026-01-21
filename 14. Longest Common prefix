@@ -1,0 +1,16 @@
+class Solution {
+public:
+    string longestCommonPrefix(vector<string>& strs) {
+        if(strs.empty()) return "";
+        string prefix=strs[0];
+        for(int i=1;i<strs.size();i++){
+            while(strs[i].find(prefix)!=0){                    // if the prefix is substring of strs[i] and start at 0 , then it will return 0 if not then != 0,
+                prefix=prefix.substr(0,prefix.length()-1);     //this will decrease the size of substring by 1;
+                if(prefix.empty()){
+                    return "";
+                }
+            }
+        }
+        return prefix;
+    }
+};
