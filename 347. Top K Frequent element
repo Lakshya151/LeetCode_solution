@@ -1,0 +1,20 @@
+class Solution {
+public:
+    vector<int> topKFrequent(vector<int>& nums, int k) {
+        unordered_map<int,int>m; // create unorder_map and store value with how many time it repeat
+        for(int x:nums){
+            m[x]++;
+        }
+        vector<pair<int,int>>arr; //create a vector that can store the value and its repeation
+        for(auto &p :m){
+            arr.push_back({p.second ,p.first});
+        }
+        vector<int>ans;
+        sort(arr.begin(),arr.end(),greater<>()); //then sort the vector name in descending order corresponding to the repeating value
+        for(int i=0;i<k;i++){
+            ans.push_back(arr[i].second);
+        }
+        return ans;
+
+    }
+};
