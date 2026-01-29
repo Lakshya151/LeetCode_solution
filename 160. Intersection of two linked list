@@ -1,0 +1,66 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+        int n1=0;
+        int n2=0;
+        ListNode * tempA=headA;
+        ListNode * tempB=headB;
+        while(tempA){ //n1 will hold the length of linkedlist A
+            n1++;
+            tempA=tempA->next;
+        }
+        while(tempB){//n2 will hold the length of linkedlist B
+            n2++;
+            tempB=tempB->next;
+        }
+        if(n1>n2){ //if the length of list A is greater than of list B
+            int f=n1-n2;
+            tempB=headB;
+            tempA=headA;
+            while(f--){
+                tempA=tempA->next;
+            }
+            while(tempA && tempB){
+                if(tempA==tempB){
+                    return tempA;
+                }
+                tempA=tempA->next;
+                tempB=tempB->next;
+            }
+        }else if(n2>n1){ // if the length of list B is greater then of list A
+            int f=n2-n1;
+            tempB=headB;
+            tempA=headA;
+            while(f--){
+                tempB=tempB->next;
+            }
+            while(tempA && tempB){
+                if(tempA==tempB){
+                    return tempA;
+                }
+                tempA=tempA->next;
+                tempB=tempB->next;
+            }
+        }else{ // if the length of both the list is equal
+            tempA=headA;
+            tempB=headB;
+            while(tempA && tempB){
+                if(tempA==tempB){
+                    return tempA;
+                }
+                tempA=tempA->next;
+                tempB=tempB->next;
+            }
+        }
+
+        return nullptr;
+    }
+};
