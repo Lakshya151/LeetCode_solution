@@ -1,0 +1,17 @@
+class Solution {
+public:
+    int absDifference(vector<int>& nums, int k) {
+        sort(nums.begin(),nums.end());
+        int psum=0;
+        int ssum=0;
+        for(int i=0;i<k;i++){// find sum of k minimum element
+            psum+=nums[i];
+        }
+        int j=nums.size()-1;
+        while(k--){// find sum of k maximum element
+            ssum+=nums[j];
+            j--;
+        }
+        return ssum-psum;
+    }
+};
