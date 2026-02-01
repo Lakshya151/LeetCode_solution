@@ -1,0 +1,24 @@
+class Solution {
+public:
+    long long sumAndMultiply(int n) {
+       string s = to_string(n);
+        long long sum=0;
+        string str="";
+        for(char c: s){
+            if(c!='0'){
+                str+=c;
+            }
+        }
+        long long temp=0;
+        for(char c:str){
+            long long x=c-'0';
+            temp=temp*10 +x ;
+        }
+        for(char c:s){
+            long long x=c-'0';
+            sum+=x;
+        }
+        long long ans=temp*sum;
+        return ans;
+    }
+};
