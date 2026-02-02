@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int countElements(vector<int>& nums, int k) {
+       int n=nums.size();
+       if(k==0){ // if least greater value is zero , then ans will be the size of vector
+        return nums.size();
+       }
+       if(n<k || k<0){
+        return 1;
+       }
+       sort(nums.begin(),nums.end());
+       int val=nums[n-k]; // here i will find the last n-k element , then all the elements before that will be lesser and has kth gretear values
+       int count=0;
+       for(int x:nums){
+        if(x<val){
+            count++;
+        }
+       }
+       return count;
+    }
+};
