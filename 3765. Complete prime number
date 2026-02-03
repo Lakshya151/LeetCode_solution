@@ -1,0 +1,32 @@
+class Solution {
+public:
+    bool isPrime(int n) { // check for number to be prime
+        if (n <= 1) return false;
+        if (n <= 3) return true;
+        for (int i = 2; i * i <= n; i++) {
+            if (n % i == 0)
+                return false;
+        }
+        return true;
+    }
+
+    bool completePrime(int num) {
+        // Check prefixes 
+        int temp = num;
+        while (temp > 0) {
+            if (!isPrime(temp))
+                return false;
+            temp /= 10;
+        }
+
+        // Check suffixes
+        string s = to_string(num);
+        for (int i = 0; i < s.length(); i++) {
+            int val = stoi(s.substr(i)); //this means from i th index to last index
+            if (!isPrime(val))
+                return false;
+        }
+
+        return true;
+    }
+};
