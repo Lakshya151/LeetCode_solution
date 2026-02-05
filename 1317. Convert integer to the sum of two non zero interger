@@ -1,0 +1,19 @@
+class Solution {
+public:
+bool haszeros(int n){ // This function will check if there any zero present in a and b
+    while(n>0){
+        if(n%10==0) return true;
+        n/=10;
+    }
+    return false;
+}
+    vector<int> getNoZeroIntegers(int n) {
+        for(int a=1;a<n;a++){
+            int b=n-a;
+            if(!haszeros(a) && !haszeros(b)){ //If there is no zeroes in both the numbers then return them as vector.
+                return {a,b};
+            }
+        }
+        return {};
+    }
+};
