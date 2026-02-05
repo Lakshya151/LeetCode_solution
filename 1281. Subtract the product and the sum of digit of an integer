@@ -1,0 +1,26 @@
+class Solution {
+public:
+    int mul(int n){ // This function is to find the multiplication of the number
+        int m=1;
+        while(n>0){
+            int x=n%10;
+            m=m*x;
+            n/=10;
+        }
+        return m;
+    }
+    int sum(int n){ // This function is to find the sum of the number.
+        int s=0;
+        while(n>0){
+            int x=n%10;
+            s+=x;
+            n/=10;
+        }
+        return s;
+    }
+    int subtractProductAndSum(int n) {
+        int Mul=mul(n);
+        int Sum=sum(n);
+        return Mul-Sum;
+    }
+};
