@@ -1,0 +1,16 @@
+class Solution {
+public:
+    int minimumDeletions(string s) {
+       int bcount=0;
+       int deletion=0;
+       for(char c:s){
+        if(c=='b'){// this is to count the number of 'b'
+            bcount++;
+        }else{
+            deletion=min(bcount,deletion+1);
+        }
+       }
+
+       return deletion;
+    }
+};
