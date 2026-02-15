@@ -1,0 +1,19 @@
+class Solution {
+public:
+    int firstUniqueFreq(vector<int>& nums) {
+        unordered_map<int,int>f;
+        unordered_map<int,int>fc;
+        for(int i=0;i<nums.size();i++){
+            f[nums[i]]++;
+        }
+        for(auto &p :f){
+            fc[p.second]++;
+        }
+        for(int i=0;i<nums.size();i++){
+            if(fc[f[nums[i]]]==1){
+                return nums[i];
+            }
+        }
+        return -1;
+    }
+};
